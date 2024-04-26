@@ -9,14 +9,18 @@ def insert_topic(request):
     TO.save()
     return HttpResponse('topic is created successfully')
 def insert_webpage(request):
+
     tn=input('enter tn')
-    TO=Topic.objects.get_or_create(topic_name=tn)[0]
-    TO.save()
     n=input('enter n')
     u=input('enter u')
-    WO=Webpage.objects.get_or_create(topic_name=TO,name=n,url=u)[0]
-    WO.save()
-    return HttpResponse('webpage is created successfully')
+    LTO=Topic.objects.filter(topic_name=tn)
+    if LTO:
+        TO=LTO[0]
+        WO=Webpage.objects.get_or_create(topic_name=TO,name=n,url=u)[0]
+        WO.save()
+        return HttpResponse('webpage is created')
+    else:
+        return HttpResponse('webpage is not created successfully')
 def insert_accessrecord(request):
     n=input('enter n')
     a=input('enter a')

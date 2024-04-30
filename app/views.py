@@ -34,7 +34,16 @@ def insert_accessrecord(request):
     AO=AcessRecord.objects.get_or_create(name=WO,date=d,author=a,)[0]
     AO.save()
     return HttpResponse('acessrecord  is created successfully')
-
-
-
+def display_topics(request):
+    QLTO=Topic.objects.all()
+    d={'QLTO':QLTO}
+    return render(request,'display_topics.html',d)
+def display_webpage(request):
+    QLWO=Webpage.objects.all()
+    d={'QLWO':QLWO}
+    return render(request,'display_webpage.html',d)
+def display_accessrecord(request):
+    QLAO=AcessRecord.objects.all()
+    d={'QLAO':QLAO}
+    return render(request,'display_accessrecord.html',d)
 
